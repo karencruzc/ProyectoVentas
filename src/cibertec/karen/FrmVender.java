@@ -14,8 +14,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class FrmVender extends JFrame {
+public class FrmVender extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JLabel lblModelo;
@@ -91,6 +93,7 @@ public class FrmVender extends JFrame {
 		txtCantidad.setColumns(10);
 		
 		btnCerrar = new JButton("Cerrar");
+		btnCerrar.addActionListener(this);
 		btnCerrar.setBounds(415, 52, 89, 23);
 		contentPane.add(btnCerrar);
 		
@@ -102,5 +105,13 @@ public class FrmVender extends JFrame {
 		
 		txtS = new JTextArea();
 		scp.setViewportView(txtS);
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCerrar) {
+			actionPerformedBtnCerrar(e);
+		}
+	}
+	protected void actionPerformedBtnCerrar(ActionEvent e) {
+		this.dispose();
 	}
 }

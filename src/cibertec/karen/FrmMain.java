@@ -71,8 +71,24 @@ public class FrmMain extends JFrame implements ActionListener {
 		mntmConsultarCocina.addActionListener(this);
 		mnMantenimiento.add(mntmConsultarCocina);
 		
+		mntmModificarCocina = new JMenuItem("Modificar cocina");
+		mntmModificarCocina.addActionListener(this);
+		mnMantenimiento.add(mntmModificarCocina);
+		
+		mntmListarCocinas = new JMenuItem("Listar cocinas");
+		mntmListarCocinas.addActionListener(this);
+		mnMantenimiento.add(mntmListarCocinas);
+		
 		mnVentas = new JMenu("Ventas");
 		menuBar.add(mnVentas);
+		
+		mntmVender = new JMenuItem("Vender");
+		mntmVender.addActionListener(this);
+		mnVentas.add(mntmVender);
+		
+		mntmGenerarReportes = new JMenuItem("Generar reportes");
+		mntmGenerarReportes.addActionListener(this);
+		mnVentas.add(mntmGenerarReportes);
 		
 		mnConfiguracin = new JMenu("Configuraci\u00F3n");
 		menuBar.add(mnConfiguracin);
@@ -80,6 +96,18 @@ public class FrmMain extends JFrame implements ActionListener {
 		mntmConfigurarDescuento = new JMenuItem("Configurar descuentos");
 		mntmConfigurarDescuento.addActionListener(this);
 		mnConfiguracin.add(mntmConfigurarDescuento);
+		
+		mntmConfigurarObsequios = new JMenuItem("Configurar obsequios");
+		mntmConfigurarObsequios.addActionListener(this);
+		mnConfiguracin.add(mntmConfigurarObsequios);
+		
+		mntmCantidadOptima = new JMenuItem("Configurar cantidad \u00F3ptima");
+		mntmCantidadOptima.addActionListener(this);
+		mnConfiguracin.add(mntmCantidadOptima);
+		
+		mntmCuotaDiaria = new JMenuItem("Configurar cuota diaria");
+		mntmCuotaDiaria.addActionListener(this);
+		mnConfiguracin.add(mntmCuotaDiaria);
 		
 		mnAyuda = new JMenu("Ayuda");
 		menuBar.add(mnAyuda);
@@ -89,6 +117,27 @@ public class FrmMain extends JFrame implements ActionListener {
 		mnAyuda.add(mntmAyuda);
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == mntmCuotaDiaria) {
+			actionPerformedMntmCuotaDiaria(e);
+		}
+		if (e.getSource() == mntmCantidadOptima) {
+			actionPerformedMntmCantidadOptima(e);
+		}
+		if (e.getSource() == mntmConfigurarObsequios) {
+			actionPerformedMntmConfigurarObsequios(e);
+		}
+		if (e.getSource() == mntmGenerarReportes) {
+			actionPerformedMntmGenerarReportes(e);
+		}
+		if (e.getSource() == mntmVender) {
+			actionPerformedMntmVender(e);
+		}
+		if (e.getSource() == mntmListarCocinas) {
+			actionPerformedMntmListarCocinas(e);
+		}
+		if (e.getSource() == mntmModificarCocina) {
+			actionPerformedMntmModificarCocina(e);
+		}
 		if (e.getSource() == mntmConsultarCocina) {
 			actionPerformedMntmConsultarCocina(e);
 		}
@@ -130,6 +179,7 @@ public class FrmMain extends JFrame implements ActionListener {
 	}
 	
 	FrmConsultar frmConsultar;
+	private JMenuItem mntmModificarCocina;
 	protected void actionPerformedMntmConsultarCocina(ActionEvent e) {
 		if(frmConsultar== null) {
 			frmConsultar = new FrmConsultar();
@@ -137,6 +187,82 @@ public class FrmMain extends JFrame implements ActionListener {
 		}else if(this.getAccessibleContext()!=null) {
 			frmConsultar = new FrmConsultar();
 			frmConsultar.setVisible(true);		
+		}
+	}
+	FrmModificar frmModificar;
+	private JMenuItem mntmListarCocinas;
+	protected void actionPerformedMntmModificarCocina(ActionEvent e) {
+		if(frmModificar== null) {
+			frmModificar = new FrmModificar();
+			frmModificar.setVisible(true);
+		}else if(this.getAccessibleContext()!=null) {
+			frmModificar = new FrmModificar();
+			frmModificar.setVisible(true);
+		}
+	}
+	FrmListado frmListado;
+	protected void actionPerformedMntmListarCocinas(ActionEvent e) {
+		if(frmListado == null) {
+			frmListado = new FrmListado();
+			frmListado.setVisible(true);			
+		}else if(this.getAccessibleContext()!=null) {
+			frmListado = new FrmListado();
+			frmListado.setVisible(true);		
+		}
+	}
+	FrmVender frmVender;
+	private JMenuItem mntmVender;
+	private JMenuItem mntmGenerarReportes;
+	protected void actionPerformedMntmVender(ActionEvent e) {
+		if(frmVender == null) {
+			frmVender = new FrmVender();
+			frmVender.setVisible(true);
+		}else if(this.getAccessibleContext()!=null) {
+			frmVender = new FrmVender();
+			frmVender.setVisible(true);
+		}
+	}
+	FrmReportes frmReportes;
+	private JMenuItem mntmConfigurarObsequios;
+	protected void actionPerformedMntmGenerarReportes(ActionEvent e) {
+		if(frmReportes ==null) {
+			frmReportes = new FrmReportes();
+			frmReportes.setVisible(true);
+		}else if(this.getAccessibleContext()!=null) {
+			frmReportes = new FrmReportes();
+			frmReportes.setVisible(true);
+		}
+	}
+	FrmObsequios frmObsequios;
+	private JMenuItem mntmCantidadOptima;
+	protected void actionPerformedMntmConfigurarObsequios(ActionEvent e) {
+		if(frmObsequios == null) {
+			frmObsequios = new FrmObsequios();
+			frmObsequios.setVisible(true);
+		}else if(this.getAccessibleContext()!=null) {
+			frmObsequios = new FrmObsequios();
+			frmObsequios.setVisible(true);
+		}
+	}
+	FrmCantidadOptima frmCantidadOptima;
+	private JMenuItem mntmCuotaDiaria;
+	protected void actionPerformedMntmCantidadOptima(ActionEvent e) {
+		if(frmCantidadOptima == null) {
+			frmCantidadOptima = new FrmCantidadOptima();
+			frmCantidadOptima.setVisible(true);
+		}else if(this.getAccessibleContext()!=null) {
+			frmCantidadOptima = new FrmCantidadOptima();
+			frmCantidadOptima.setVisible(true);
+		}
+	}
+	FrmCuotaDiaria frmCuotaDiaria;
+	protected void actionPerformedMntmCuotaDiaria(ActionEvent e) {
+		if(frmCuotaDiaria == null) {
+			frmCuotaDiaria = new FrmCuotaDiaria();
+			frmCuotaDiaria.setVisible(true);
+		}else if(this.getAccessibleContext()!=null) {
+			frmCuotaDiaria = new FrmCuotaDiaria();
+			frmCuotaDiaria.setVisible(true);
 		}
 	}
 }

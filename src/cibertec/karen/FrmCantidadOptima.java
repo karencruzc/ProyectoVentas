@@ -73,5 +73,6 @@ public class FrmCantidadOptima extends JFrame implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnCancelar(ActionEvent e) {
+		this.dispose();
 	}
 }

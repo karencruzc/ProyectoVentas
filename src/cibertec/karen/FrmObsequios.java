@@ -8,8 +8,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class FrmObsequios extends JFrame {
+public class FrmObsequios extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JLabel lblUnidad1;
@@ -78,12 +80,27 @@ public class FrmObsequios extends JFrame {
 		contentPane.add(txtExtractor);
 		
 		btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(this);
 		btnAceptar.setBounds(302, 14, 89, 23);
 		contentPane.add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(this);
 		btnCancelar.setBounds(302, 42, 89, 23);
 		contentPane.add(btnCancelar);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCancelar) {
+			actionPerformedBtnCancelar(e);
+		}
+		if (e.getSource() == btnAceptar) {
+			actionPerformedBtnAceptar(e);
+		}
+	}
+	protected void actionPerformedBtnAceptar(ActionEvent e) {
+	}
+	protected void actionPerformedBtnCancelar(ActionEvent e) {
+		this.dispose();
+	}
 }

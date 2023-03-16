@@ -10,8 +10,10 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class FrmModificar extends JFrame {
+public class FrmModificar extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JLabel lblModelo;
@@ -113,6 +115,7 @@ public class FrmModificar extends JFrame {
 		contentPane.add(txtQuemadores);
 		
 		btnCerrar = new JButton("Cerrar");
+		btnCerrar.addActionListener(this);
 		btnCerrar.setBounds(392, 11, 89, 23);
 		contentPane.add(btnCerrar);
 		
@@ -121,4 +124,12 @@ public class FrmModificar extends JFrame {
 		contentPane.add(btnGrabar);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCerrar) {
+			actionPerformedBtnCerrar(e);
+		}
+	}
+	protected void actionPerformedBtnCerrar(ActionEvent e) {
+		this.dispose();
+	}
 }

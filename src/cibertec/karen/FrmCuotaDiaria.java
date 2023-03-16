@@ -8,8 +8,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class FrmCuotaDiaria extends JFrame {
+public class FrmCuotaDiaria extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JLabel lblCuota;
@@ -60,8 +62,17 @@ public class FrmCuotaDiaria extends JFrame {
 		contentPane.add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(this);
 		btnCancelar.setBounds(363, 43, 89, 23);
 		contentPane.add(btnCancelar);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCancelar) {
+			actionPerformedBtnCancelar(e);
+		}
+	}
+	protected void actionPerformedBtnCancelar(ActionEvent e) {
+		this.dispose();
+	}
 }

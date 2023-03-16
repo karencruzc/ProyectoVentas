@@ -9,8 +9,10 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.ScrollPaneConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class FrmListado extends JFrame {
+public class FrmListado extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JButton btnCerrar;
@@ -48,6 +50,7 @@ public class FrmListado extends JFrame {
 		contentPane.setLayout(null);
 		
 		btnCerrar = new JButton("Cerrar");
+		btnCerrar.addActionListener(this);
 		btnCerrar.setBounds(159, 313, 89, 23);
 		contentPane.add(btnCerrar);
 		
@@ -65,4 +68,12 @@ public class FrmListado extends JFrame {
 		scp.setViewportView(txtS);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCerrar) {
+			actionPerformedBtnCerrar(e);
+		}
+	}
+	protected void actionPerformedBtnCerrar(ActionEvent e) {
+		this.dispose();
+	}
 }

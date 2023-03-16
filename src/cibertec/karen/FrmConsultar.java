@@ -132,4 +132,5 @@ public class FrmConsultar extends JFrame implements ActionListener {
 	protected void actionPerformedBtnCerrar(ActionEvent e) {
 		this.dispose();
 	}
+	
 }
