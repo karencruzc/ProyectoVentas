@@ -16,11 +16,11 @@ public class Tienda extends JFrame implements ActionListener {
 	
 	public static String modelo0 = "Mabe EMP6120PG0";
 	public static double precio0 = 949.0;
-	
 	public static double fondo0 = 58.6;
 	public static double ancho0 = 60.0;
 	public static double alto0 = 91.0;
 	public static int quemadores0 = 4;
+	
 	// Datos mínimos de la segunda cocina
 	public static String modelo1 = "Indurama Parma";
 	public static double precio1 = 1089.0;

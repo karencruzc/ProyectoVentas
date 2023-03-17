@@ -12,8 +12,13 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.awt.event.ItemEvent;
+import java.awt.Font;
 
-public class FrmConsultar extends JFrame implements ActionListener {
+public class FrmConsultar extends JFrame implements ActionListener, ItemListener {
 
 	private JPanel contentPane;
 	private JLabel lblModelo;
@@ -64,6 +69,7 @@ public class FrmConsultar extends JFrame implements ActionListener {
 		contentPane.add(lblModelo);
 		
 		cboModelo = new JComboBox();
+		cboModelo.addItemListener(this);
 		cboModelo.setModel(new DefaultComboBoxModel(new String[] {"Mabe EMP6120PG0", "Indurama Parma", "Sole COSOL027", "Coldex CX602", "Reco Dakota"}));
 		cboModelo.setBounds(107, 7, 143, 22);
 		contentPane.add(cboModelo);
@@ -73,6 +79,8 @@ public class FrmConsultar extends JFrame implements ActionListener {
 		contentPane.add(lblPrecio);
 		
 		txtPrecio = new JTextField();
+		txtPrecio.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtPrecio.setEditable(false);
 		txtPrecio.setEnabled(false);
 		txtPrecio.setBounds(107, 36, 143, 20);
 		contentPane.add(txtPrecio);
@@ -83,6 +91,7 @@ public class FrmConsultar extends JFrame implements ActionListener {
 		contentPane.add(lblAncho);
 		
 		txtAncho = new JTextField();
+		txtAncho.setEditable(false);
 		txtAncho.setEnabled(false);
 		txtAncho.setColumns(10);
 		txtAncho.setBounds(107, 62, 143, 20);
@@ -93,6 +102,7 @@ public class FrmConsultar extends JFrame implements ActionListener {
 		contentPane.add(lblAlto);
 		
 		txtAlto = new JTextField();
+		txtAlto.setEditable(false);
 		txtAlto.setEnabled(false);
 		txtAlto.setColumns(10);
 		txtAlto.setBounds(107, 90, 143, 20);
@@ -103,6 +113,7 @@ public class FrmConsultar extends JFrame implements ActionListener {
 		contentPane.add(lblFondo);
 		
 		txtFondo = new JTextField();
+		txtFondo.setEditable(false);
 		txtFondo.setEnabled(false);
 		txtFondo.setColumns(10);
 		txtFondo.setBounds(107, 118, 143, 20);
@@ -113,6 +124,8 @@ public class FrmConsultar extends JFrame implements ActionListener {
 		contentPane.add(lblQuemadores);
 		
 		txtQuemadores = new JTextField();
+		txtQuemadores.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtQuemadores.setEditable(false);
 		txtQuemadores.setEnabled(false);
 		txtQuemadores.setColumns(10);
 		txtQuemadores.setBounds(107, 146, 143, 20);
@@ -122,7 +135,20 @@ public class FrmConsultar extends JFrame implements ActionListener {
 		btnCerrar.addActionListener(this);
 		btnCerrar.setBounds(362, 7, 89, 23);
 		contentPane.add(btnCerrar);
+		
+		//implementacion seteo inicial		
+		seteatPrimeraCocina();
 	}
+	
+	
+	private void seteatPrimeraCocina() {
+		lista = CocinaDatos.listaCocinas();
+		Cocina cocinaMabe = lista.get(0);
+		
+		txtPrecio.setText(String.valueOf(cocinaMabe.getPrecio()));
+		txtQuemadores.setText(String.valueOf(cocinaMabe.getQuemadores()));
+	}
+	
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnCerrar) {
@@ -133,4 +159,28 @@ public class FrmConsultar extends JFrame implements ActionListener {
 		this.dispose();
 	}
 	
+	public void itemStateChanged(ItemEvent e) {
+		if (e.getSource() == cboModelo) {
+			itemStateChangedCboModelo(e);
+		}
+	}
+	
+	List<Cocina> lista = new ArrayList<>();
+	
+	protected void itemStateChangedCboModelo(ItemEvent e) {
+		lista = CocinaDatos.listaCocinas();
+				
+		//for(TipoDato objeto : lista<TipoDato>)
+		for(Cocina kitchen : lista) {
+			
+			if(kitchen.getModelo() == e.getItem()) {
+				
+				txtPrecio.setText( String.valueOf(kitchen.getPrecio()) );
+				//TODO: kcruz
+				txtQuemadores.setText(  String.valueOf(kitchen.getQuemadores()) );
+			}
+		
+		}
+		
+	}
 }
