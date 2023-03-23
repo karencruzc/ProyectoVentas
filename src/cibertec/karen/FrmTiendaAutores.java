@@ -20,8 +20,11 @@ public class FrmTiendaAutores extends JFrame implements ActionListener {
 	private JLabel lblTienda;
 	private JSeparator separator;
 	private JLabel lblNewLabel;
-	private JSeparator separator_1;
 	private JButton btnCerrar;
+	private JLabel lblGonzalesLeyvaJhonatan;
+	private JLabel lblLopezSanchezRicardo;
+	private JLabel lblPeregrinoCubaDiego;
+	private JLabel lblTrujilloAstoMartn;
 
 	/**
 	 * Launch the application.
@@ -52,28 +55,40 @@ public class FrmTiendaAutores extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		lblTienda = new JLabel("Tienda 1.0");
+		lblTienda = new JLabel("FIRST KITCHEN S.A.");
 		lblTienda.setFont(new Font("Tahoma", Font.BOLD, 25));
 		lblTienda.setBackground(new Color(0, 0, 255));
-		lblTienda.setBounds(133, 25, 185, 40);
+		lblTienda.setBounds(89, 27, 324, 40);
 		contentPane.add(lblTienda);
 		
 		separator = new JSeparator();
 		separator.setBounds(10, 78, 414, 2);
 		contentPane.add(separator);
 		
-		lblNewLabel = new JLabel("Karen Cruz Carpio");
-		lblNewLabel.setBounds(133, 106, 168, 14);
+		lblNewLabel = new JLabel("Cruz Carpio, Karen");
+		lblNewLabel.setBounds(133, 91, 171, 14);
 		contentPane.add(lblNewLabel);
-		
-		separator_1 = new JSeparator();
-		separator_1.setBounds(10, 148, 414, 2);
-		contentPane.add(separator_1);
 		
 		btnCerrar = new JButton("Cerrar");
 		btnCerrar.addActionListener(this);
 		btnCerrar.setBounds(170, 194, 89, 23);
 		contentPane.add(btnCerrar);
+		
+		lblGonzalesLeyvaJhonatan = new JLabel("gonzales Leyva, Jhonatan");
+		lblGonzalesLeyvaJhonatan.setBounds(133, 104, 171, 14);
+		contentPane.add(lblGonzalesLeyvaJhonatan);
+		
+		lblLopezSanchezRicardo = new JLabel("Lopez Sanchez, Ricardo");
+		lblLopezSanchezRicardo.setBounds(133, 116, 171, 14);
+		contentPane.add(lblLopezSanchezRicardo);
+		
+		lblPeregrinoCubaDiego = new JLabel("Peregrino Cuba, Diego");
+		lblPeregrinoCubaDiego.setBounds(133, 129, 171, 14);
+		contentPane.add(lblPeregrinoCubaDiego);
+		
+		lblTrujilloAstoMartn = new JLabel("Trujillo Asto, Mart\u00EDn");
+		lblTrujilloAstoMartn.setBounds(133, 141, 171, 14);
+		contentPane.add(lblTrujilloAstoMartn);
 	}
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnCerrar) {
