@@ -1,20 +1,21 @@
-package pe.firstkitchen;
+package sistemaVentasCocina;
 
-import java.awt.EventQueue;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
-import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
-import javax.swing.JButton;
 import javax.swing.ScrollPaneConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class FrmListado extends JFrame implements ActionListener {
+public class DlgListarCocina extends JDialog implements ActionListener {
 
-	private JPanel contentPane;
+	private final JPanel contentPanel = new JPanel();
 	private JButton btnCerrar;
 	private JButton btnListar;
 	private JTextArea txtS;
@@ -24,56 +25,52 @@ public class FrmListado extends JFrame implements ActionListener {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FrmListado frame = new FrmListado();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		try {
+			DlgListarCocina dialog = new DlgListarCocina();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the dialog.
 	 */
-	public FrmListado() {
-		setTitle("Listado de cocinas");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 541, 386);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+	public DlgListarCocina() {
+		setBounds(100, 100, 450, 318);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
 		
 		btnCerrar = new JButton("Cerrar");
 		btnCerrar.addActionListener(this);
-		btnCerrar.setBounds(159, 313, 89, 23);
-		contentPane.add(btnCerrar);
+		btnCerrar.setBounds(126, 248, 89, 23);
+		contentPanel.add(btnCerrar);
 		
 		btnListar = new JButton("Listar");
-		btnListar.setBounds(268, 313, 89, 23);
-		contentPane.add(btnListar);
+		btnListar.setBounds(246, 248, 89, 23);
+		contentPanel.add(btnListar);
 		
 		scp = new JScrollPane();
 		scp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scp.setBounds(10, 11, 505, 284);
-		contentPane.add(scp);
+		scp.setBounds(10, 11, 414, 226);
+		contentPanel.add(scp);
 		
 		txtS = new JTextArea();
 		scp.setViewportView(txtS);
 	}
-
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnCerrar) {
 			actionPerformedBtnCerrar(e);
 		}
 	}
 	protected void actionPerformedBtnCerrar(ActionEvent e) {
-		this.dispose();
+	dispose();
+	
 	}
+	
+	
 }
