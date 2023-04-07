@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
 
 public class DlgVender extends JDialog implements ActionListener {
 
@@ -60,6 +61,7 @@ public class DlgVender extends JDialog implements ActionListener {
 		}
 		
 		cboModelo = new JComboBox();
+		cboModelo.setModel(new DefaultComboBoxModel(new String[] {"Mabe EMP6120PG0", "Indurama Parma", "Sole COSOL027", "Coldex CX602", "Reco Dak"}));
 		cboModelo.setBounds(107, 7, 172, 22);
 		contentPanel.add(cboModelo);
 		
@@ -109,14 +111,88 @@ public class DlgVender extends JDialog implements ActionListener {
 			actionPerformedBtnVender(e);
 		}
 	}
-	protected void actionPerformedBtnVender(ActionEvent e) {
+	
+	
+	String nombreModelo(int modelo){
 		
-		double importeTotal, porcentajeCuota;
+		switch (modelo) {
+		case 0: 
+			return FrmPrincipal.modelo0;			
+		case 1: 
+			return FrmPrincipal.modelo1;			
+		case 2: 
+			return FrmPrincipal.modelo2;		
+		case 3: 
+			return FrmPrincipal.modelo3;		
+		default: 
+			return FrmPrincipal.modelo4;				
+		}
+		
+	}
+	
+	double importeCompra(int modelo, int cantidad) {
+		
+		switch (modelo) {
+		case 0: 
+			return FrmPrincipal.precio0 * cantidad;
+		case 1: 
+			return FrmPrincipal.precio1 * cantidad;
+		case 2: 
+			return FrmPrincipal.precio2 * cantidad;
+		case 3: 
+			return FrmPrincipal.precio3 * cantidad;
+		default:
+			return FrmPrincipal.precio4 * cantidad;
+		}
+		
+	}
+	
+	
+	
+	
+	protected void actionPerformedBtnVender(ActionEvent e) {
+		int cantidad, modelo;
+		double precio=0, importeCompra=0.0, importeDscto=0.0, importePagar;
+		String obs, nombre;
+		
+		//entrada de datos
+		modelo = cboModelo.getSelectedIndex();//indice del combo indica qué cocina es... 
+		cantidad = Integer.parseInt(txtCantidad.getText());//
+		
+		//calculo de datos
+		nombre = nombreModelo(modelo);
+		
+		importeCompra = importeCompra(modelo, cantidad);
+		
+		if(cantidad>=1 && cantidad <= 5) {
+			importeDscto = importeCompra * 0.075;
+		}else if (cantidad >=6 && cantidad <=10) {
+			importeDscto = importeCompra * 0.10;
+		}else if(cantidad >=11 && cantidad <=15) {
+			importeDscto = importeCompra * 0.125;
+		}else {
+			importeDscto = importeCompra * 0.15;
+		}
+		
+		//Obsequios
+		if(cantidad == 1)
+			obs = "Cafetera";
+		if(cantidad >=2 && cantidad <=5)
+			obs = "Licuadora";
+		if(cantidad>5)
+			obs = "Extractor";		
+		
+		//Calculo de importe a Pagar		
+		importePagar = importeCompra - importeDscto;
+		
+		
+		
+		/*
 		importeTotal = 13167.38;
-		porcentajeCuota = 0.2633;
+		porcentajeCuota = 0.2633;		
 		JOptionPane.showMessageDialog(this, "Venta Nro. 5" + "\n"+"Importe total general acumulado: S/." + importeTotal + 
 				"\n" + "Porcentaje de la cuota diaria: " + porcentajeCuota*100 + "%", "Avance de ventas", JOptionPane.INFORMATION_MESSAGE);
-		
+		*/
 	}
 	
 	protected void actionPerformedBtnCerrar(ActionEvent e) {

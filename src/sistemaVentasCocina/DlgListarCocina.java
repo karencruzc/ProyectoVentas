@@ -50,6 +50,7 @@ public class DlgListarCocina extends JDialog implements ActionListener {
 		contentPanel.add(btnCerrar);
 		
 		btnListar = new JButton("Listar");
+		btnListar.addActionListener(this);
 		btnListar.setBounds(246, 248, 89, 23);
 		contentPanel.add(btnListar);
 		
@@ -63,14 +64,24 @@ public class DlgListarCocina extends JDialog implements ActionListener {
 		scp.setViewportView(txtS);
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnListar) {
+			actionPerformedBtnListar(e);
+		}
 		if (e.getSource() == btnCerrar) {
 			actionPerformedBtnCerrar(e);
 		}
 	}
 	protected void actionPerformedBtnCerrar(ActionEvent e) {
 	dispose();
-	
 	}
 	
 	
+	protected void actionPerformedBtnListar(ActionEvent e) {
+		txtS.setText("LISTADO DE COCINAS \n\n");
+		txtS.append("Modelo "+"\t: "+FrmPrincipal.modelo0 + "\n");
+		txtS.append("Precio "+"\t: "+FrmPrincipal.precio0 + "\n");
+		txtS.append("\n");
+		txtS.append("Modelo "+"\t: "+FrmPrincipal.modelo1 + "\n");
+		
+	}
 }
